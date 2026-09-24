@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MetroX | Login</title>
+<link rel="stylesheet" href="auth.css">
+</head>
+<body>
+<div class="auth">
+  <section class="hero">
+    <div class="logo"><div class="mark">M</div><h1>Metro<span>X</span></h1></div>
+    <h2>Smart travel.<br>Simple journeys.</h2>
+    <p>A modern college-project interface for metro route planning, fares, tickets and station services.</p>
+    <div class="features">
+      <div>⇄ Route Finder</div><div>₹ Fare Calculator</div>
+      <div>🎫 Demo QR Ticket</div><div>🚆 Simulated Train Status</div>
+    </div>
+  </section>
+  <section class="box">
+    <div class="tabs" id="authTabs">
+      <button id="tabLogin" class="tab active" onclick="showView('login')">Login</button>
+      <button id="tabRegister" class="tab" onclick="showView('register')">Register</button>
+    </div>
+
+    <form id="loginForm" class="form active">
+      <h2>Welcome back</h2><div class="sub">Sign in to MetroX</div>
+      <div class="field"><label>EMAIL</label><input id="loginEmail" type="email" required placeholder="you@example.com"></div>
+      <div class="field"><label>PASSWORD</label>
+        <div class="pwd-wrap"><input id="loginPassword" type="password" required placeholder="••••••••"><span class="pwd-eye" onclick="togglePwd('loginPassword',this)">👁</span></div>
+      </div>
+      <button class="submit" type="submit">Login</button>
+      <div class="link" onclick="showView('forgotChoose')">Forgot password?</div>
+    </form>
+
+    <form id="registerForm" class="form">
+      <h2>Create account</h2><div class="sub">Register for the project demo</div>
+      <div class="field"><label>NAME</label><input id="regName" required></div>
+      <div class="field"><label>EMAIL</label><input id="regEmail" type="email" required></div>
+      <div class="field"><label>PHONE NUMBER</label><input id="regPhone" required placeholder="10-digit mobile number"></div>
+      <div class="field"><label>PASSWORD</label>
+        <div class="pwd-wrap"><input id="regPassword" type="password" required><span class="pwd-eye" onclick="togglePwd('regPassword',this)">👁</span></div>
+      </div>
+      <div class="field"><label>CONFIRM PASSWORD</label>
+        <div class="pwd-wrap"><input id="regConfirm" type="password" required><span class="pwd-eye" onclick="togglePwd('regConfirm',this)">👁</span></div>
+      </div>
+      <button class="submit" type="submit">Create Account</button>
+    </form>
+
+    <div id="forgotChoose" class="form">
+      <h2>Reset password</h2><div class="sub">Recover your password using</div>
+      <button class="submit" style="margin-top:8px" onclick="startForgot('sms')">📱 Recover via SMS</button>
+      <button class="submit ghost" style="margin-top:10px" onclick="startForgot('email')">✉️ Recover via Email</button>
+      <div class="link" onclick="showView('login')">← Back to Login</div>
+    </div>
+
+    <div id="forgotIdentify" class="form">
+      <h2>Verify your identity</h2><div class="sub" id="identifySub"></div>
+      <div class="field"><label id="forgotLabel">REGISTERED PHONE NUMBER</label><input id="forgotIdentifier"></div>
+      <button class="submit" onclick="sendOtp()">Send OTP</button>
+      <div class="link" onclick="showView('forgotChoose')">← Back</div>
+    </div>
+
+    <div id="forgotOtp" class="form">
+      <h2>Enter OTP</h2><div class="sub" id="otpSentMsg" style="color:#42e6a4"></div>
+      <div class="field"><label>6-DIGIT CODE</label><input id="otpInput" maxlength="6"></div>
+      <button class="submit" onclick="verifyOtp()">Verify OTP</button>
+    </div>
+
+    <div id="resetPass" class="form">
+      <h2>Set new password</h2><div class="sub" style="color:#42e6a4">OTP verified — choose a new password</div>
+      <div class="field"><label>NEW PASSWORD</label>
+        <div class="pwd-wrap"><input id="newPass1" type="password"><span class="pwd-eye" onclick="togglePwd('newPass1',this)">👁</span></div>
+      </div>
+      <div class="field"><label>CONFIRM PASSWORD</label>
+        <div class="pwd-wrap"><input id="newPass2" type="password"><span class="pwd-eye" onclick="togglePwd('newPass2',this)">👁</span></div>
+      </div>
+      <button class="submit" onclick="resetPassword()">Reset Password</button>
+    </div>
+
+    <div id="msg" class="msg"></div>
+    <div class="demo"><strong>Demo login</strong><br>Email: demo@metrox.com<br>Password: metrox123</div>
+  </section>
+</div>
+<script src="auth.js"></script>
+</body>
+</html>
