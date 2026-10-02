@@ -106,7 +106,8 @@ function ensureAdmin(){
     location.href='../index.html';
   }
 }
-function logout(){
+async function logout(){
+  try { await fetch('/api/auth/logout', { method: 'POST' }); } catch(e){}
   localStorage.removeItem('metroSession');
   location.href = location.pathname.includes('/admin/') ? '../auth.html' : 'auth.html';
 }
