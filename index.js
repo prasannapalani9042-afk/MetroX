@@ -123,6 +123,12 @@ function clearHistory(){ localStorage.removeItem('metroHistory'); }
 /* ---- Page shell: sidebar / topbar / role-based nav (called on every app page) ---- */
 function setupShell(){
   ensureLogin();
+  fetch('/api/session').then(r => r.json()).then(d => {
+  if (!d.authenticated) {
+    localStorage.removeItem('metroSession');
+    location.href = location.pathname.includes('/admin/') ? '../auth.html' : 'auth.html';
+  }
+}).catch(() => {});
   let u = getSession() || {name:'User'};
   /* self-heal: if this session was created before roles existed (or role changed), refresh it from the users table */
   if(u.email){
